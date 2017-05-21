@@ -47,7 +47,7 @@ e:value(t,translate("每天"..t.."点"))
 end
 e.default=0
 e.rmempty=false
-restart=t:taboption("base",Button,"restart",translate("Manually update the koolproxy rule"))
+restart=t:taboption("base",Button,"update",translate("Manually update the koolproxy rule"))
 restart.inputtitle=translate("Update manually")
 restart.inputstyle="reload"
 restart.write=function()
@@ -102,7 +102,7 @@ end
 e.write=function(t,t,e)
 a.writefile(i,e:gsub("\r\n","\n"))
 end
-local i="/usr/share/koolproxy/data/user.txt"
+local i="/usr/share/koolproxy/data/rules/user.txt"
 e=t:taboption("customlist",TextValue,"configfile1")
 e.description=translate("Enter your custom rules, each row.")
 e.rows=28
