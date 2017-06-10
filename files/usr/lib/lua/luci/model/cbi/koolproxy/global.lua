@@ -38,6 +38,9 @@ e.rmempty=false
 e:value("disable",translate("No Filter"))
 e:value("global",translate("Global Filter"))
 e:value("adblock",translate("AdBlock Filter"))
+e=t:taboption("base",Flag,"viedoswitch",translate("Only block video ADs"))
+e.default=0
+--e:depends("filter_mode","adblock")
 e=t:taboption("base",Flag,"adblock",translate("Open adblock"))
 e.default=0
 e:depends("filter_mode","adblock")
