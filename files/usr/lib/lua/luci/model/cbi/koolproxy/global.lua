@@ -138,8 +138,8 @@ e.rmempty=true
 e=t:option(Value,"ipaddr",translate("IP Address"))
 e.width="20%"
 e.datatype="ip4addr"
-luci.ip.neighbors(function(t)
-e:value(t["IP address"])
+luci.ip.neighbors({family = 4}, function(neighbor)
+e:value(neighbor.dest:string(), "%s" %{neighbor.dest:string()})
 end)
 e=t:option(Value,"mac",translate("MAC Address"))
 e.width="20%"
