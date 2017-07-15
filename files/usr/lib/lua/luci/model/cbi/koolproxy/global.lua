@@ -138,7 +138,7 @@ e.rmempty=true
 e=t:option(Value,"ipaddr",translate("IP Address"))
 e.width="20%"
 e.datatype="ip4addr"
-n.net.arptable(function(t)
+luci.ip.neighbors(function(t)
 e:value(t["IP address"])
 end)
 e=t:option(Value,"mac",translate("MAC Address"))
