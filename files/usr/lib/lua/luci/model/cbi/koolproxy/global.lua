@@ -139,7 +139,9 @@ e=t:option(Value,"ipaddr",translate("IP Address"))
 e.width="20%"
 e.datatype="ip4addr"
 luci.ip.neighbors({family = 4}, function(neighbor)
-e:value(neighbor.dest:string(), "%s" %{neighbor.dest:string()})
+if neighbor.reachable then
+	e:value(neighbor.dest:string(), "%s (%s)" %{neighbor.dest:string(), neighbor.mac})
+end
 end)
 e=t:option(Value,"mac",translate("MAC Address"))
 e.width="20%"
