@@ -50,7 +50,6 @@ for t=0,23 do
 e:value(t,translate("每天"..t.."点"))
 end
 e.default=0
-e.rmempty=false
 e:depends("filter_mode","adblock")
 restart=t:taboption("base",Button,"update",translate("Manually update the koolproxy rule"))
 restart.inputtitle=translate("Update manually")
