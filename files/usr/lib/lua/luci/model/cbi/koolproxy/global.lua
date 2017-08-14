@@ -40,8 +40,7 @@ e.rmempty=false
 e:value("disable",translate("No Filter"))
 e:value("global",translate("Global Filter"))
 e:value("adblock",translate("AdBlock Filter"))
-e=t:taboption("base",Flag,"viedoswitch",translate("Only block video ADs"))
-e.default=0
+e:value("video",translate("Video Filter"))
 --e:depends("filter_mode","adblock")
 e=t:taboption("base",Flag,"adblock",translate("Open adblock"))
 e.default=0
@@ -52,9 +51,11 @@ e:value(t,translate("每天"..t.."点"))
 end
 e.default=0
 e.rmempty=false
+e:depends("filter_mode","adblock")
 restart=t:taboption("base",Button,"update",translate("Manually update the koolproxy rule"))
 restart.inputtitle=translate("Update manually")
 restart.inputstyle="reload"
+restart:depends("filter_mode","adblock")
 restart.write=function()
 luci.sys.call("/etc/init.d/koolproxy update")
 luci.http.redirect(luci.dispatcher.build_url("admin","services","koolproxy"))
