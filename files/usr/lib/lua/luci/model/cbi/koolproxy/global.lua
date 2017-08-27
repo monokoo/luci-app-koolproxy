@@ -159,6 +159,7 @@ e.rmempty=false
 e:value("disable",translate("No Filter"))
 e:value("global",translate("Global Filter"))
 e:value("adblock",translate("AdBlock Filter"))
+e:value("video",translate("Video Filter"))
 e:value("ghttps",translate("Global Https Filter"))
 e:value("ahttps",translate("AdBlock Https Filter"))
 function Download()
