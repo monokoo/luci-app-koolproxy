@@ -43,13 +43,13 @@ e:value("adblock",translate("AdBlock Filter"))
 e:value("video",translate("Video Filter"))
 --e:depends("filter_mode","adblock")
 e=t:taboption("base",Flag,"adblock",translate("Open adblock"))
-e.default=0
+e.default=1
 e:depends("filter_mode","adblock")
 e=t:taboption("base",ListValue,"time_update",translate("Timing update rules"))
 for t=0,23 do
 e:value(t,translate("每天"..t.."点"))
 end
-e.default=0
+e.default=4
 e:depends("filter_mode","adblock")
 restart=t:taboption("base",Button,"update",translate("Manually update the koolproxy rule"))
 restart.inputtitle=translate("Update manually")
