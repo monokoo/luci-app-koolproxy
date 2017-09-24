@@ -40,7 +40,6 @@ e.rmempty=false
 e:value("global",translate("Global Filter"))
 e:value("adblock",translate("AdBlock Filter"))
 e:value("video",translate("Video Filter"))
---e:depends("filter_mode","adblock")
 e=t:taboption("base",Flag,"adblock",translate("Open adblock"))
 e.default=1
 e:depends("filter_mode","adblock")
@@ -58,26 +57,26 @@ restart.write=function()
 luci.sys.call("/etc/init.d/koolproxy update")
 luci.http.redirect(luci.dispatcher.build_url("admin","services","koolproxy"))
 end
-e=t:taboption("base",ListValue,"default_acl_mode",translate('Default')..translate("访问控制模式"))
+e=t:taboption("base",ListValue,"default_acl_mode",translate('Default')..translate("ACL Mode"))
 e.default="http"
 e.rmempty=false
 e:value("disable",translate("No Filter"))
 e:value("http",translate("http only"))
 e:value("global",translate("http + https"))
-e=t:taboption("base",ListValue,"reboot_mode",translate("KoolProxy自动重启"))
+e=t:taboption("base",ListValue,"reboot_mode",translate("KoolProxy AutoRestart"))
 e.default="disable"
 e.rmempty=false
-e:value("disable",translate("关闭"))
-e:value("regular",translate("定时重启"))
-e:value("interval",translate("间隔重启"))
-e=t:taboption("base",ListValue,"regular_time",translate("定时"))
+e:value("disable",translate("disable"))
+e:value("regular",translate("regular restart"))
+e:value("interval",translate("interval restart"))
+e=t:taboption("base",ListValue,"regular_time",translate("regular"))
 for t=0,23 do
 e:value(t,translate("每天"..t.."点"))
 end
 e.default=5
 e.datatype=uinteger
 e:depends("reboot_mode","regular")
-e=t:taboption("base",Value,"interval_time",translate("间隔"))
+e=t:taboption("base",Value,"interval_time",translate("interval"))
 for t=6,72 do
 	e:value(t,translate(t.."小时"))
 end

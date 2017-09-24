@@ -1,0 +1,135 @@
+msgid ""
+msgstr "Content-Type: text/plain; charset=UTF-8\n"
+
+msgid "koolproxy"
+msgstr "Koolproxy"
+
+msgid "A powerful advertisement blocker. <br /><font color=\"red\">Adblock Plus Host list + koolproxy Blacklist mode runs without loss of bandwidth due to performance issues.<br /></font>"
+msgstr "koolproxy是能识别adblock规则的代理软件，可以过滤普通网页广告、视频广告、HTTPS广告<br />Adblock Plus 的 Host 列表 + KoolProxy 黑名单模式运行更流畅上网体验，开启全局模式获取更好的过滤效果<br /><font color=\"red\">如果要为客户端过滤https广告，必须在客户端安装根证书。</font><a style=\"color: #4300ff;\" onclick=\"window.open('http://koolshare.cn/thread-79889-1-1.html')\">==跳转链接到Koolshare论坛教程贴==</a>"
+
+msgid "Running Status"
+msgstr "运行状态"
+
+msgid "Transparent Proxy"
+msgstr "透明代理"
+
+msgid "RUNNING"
+msgstr "运行中"
+
+msgid "NOT RUNNING"
+msgstr "未运行"
+
+msgid "Global Setting"
+msgstr "服务配置"
+
+msgid "Enable"
+msgstr "启用"
+
+msgid "Default"
+msgstr "默认"
+
+msgid "disable"
+msgstr "关闭"
+
+msgid "regular restart"
+msgstr "定时重启"
+
+msgid "interval restart"
+msgstr "间隔重启"
+
+msgid "regular"
+msgstr "定时"
+
+msgid "interval"
+msgstr "间隔"
+
+msgid "Filter Mode"
+msgstr "过滤模式"
+
+msgid "ACL Mode"
+msgstr "访问控制模式"
+
+msgid "No Filter"
+msgstr "不过滤"
+
+msgid "Global Filter"
+msgstr "全局模式"
+
+msgid "KoolProxy AutoRestart"
+msgstr "KoolProxy自动重启"
+
+msgid "MAC Address"
+msgstr "内部MAC地址"
+
+msgid "Client Remarks"
+msgstr "客户端备注"
+
+msgid "About Koolproxy"
+msgstr "规则版本"
+
+msgid "Backup Download"
+msgstr "下载证书备份"
+
+msgid "Upload backup file,The file name must be koolproxyCA.tar.gz"
+msgstr "上传恢复已备份的证书，文件名必须为koolproxyCA.tar.gz"
+
+msgid "Upload Restore"
+msgstr "上传恢复证书"
+
+msgid "Certificate Management"
+msgstr "证书管理"
+
+msgid "<div align=\"left\">Certificate Restore</div>"
+msgstr "<div align=\"left\"><strong>证书恢复</strong></div>"
+
+msgid "<div align=\"left\">Certificate Backup</div>"
+msgstr "<div align=\"left\"><strong>证书备份</strong></div>"
+
+msgid "AdBlock Filter"
+msgstr "黑名单模式"
+
+msgid "Video Filter"
+msgstr "视频模式"
+
+msgid "koolproxy ACLs"
+msgstr "koolproxy 访问控制"
+
+msgid "ACLs is a tools which used to designate specific IP filter mode,The MAC addresses added to the list will be filtered using https"
+msgstr "访问控制列表是用于指定特殊IP过滤模式的工具，如为已安装证书的客户端开启https广告过滤等，MAC或者IP必须填写其中一项。"
+
+msgid "IP Address"
+msgstr "内部IP地址"
+
+msgid "Timing update rules"
+msgstr "定时更新规则"
+
+msgid "These had been joined websites will use filter,but only blacklist model.Please input the domain names of websites,every line can input only one website domain.For example,google.com."
+msgstr "加入的网址将过滤广告。只针对黑名单模式。只能输入WEB地址，如：google.com，每个地址一行。"
+
+msgid "Enter your custom rules, each row."
+msgstr "输入你的自定义规则，每条规则一行。"
+
+msgid "Set Blacklist Of custom"
+msgstr "自定义规则"
+
+msgid "Set Blacklist Of Websites"
+msgstr "网站黑名单设置"
+
+msgid "Set Blacklist Of IP"
+msgstr "IP黑名单设置"
+
+msgid "Koolproxy Logs"
+msgstr "查看最近的更新日志"
+
+msgid "View the logs"
+msgstr "更新日志"
+
+msgid "Update manually"
+msgstr "手动更新"
+
+msgid "Manually update the koolproxy rule"
+msgstr "手动更新Adblock Host规则"
+
+msgid "Open adblock"
+msgstr "开启Adblock Plus Host"
+

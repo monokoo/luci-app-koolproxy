@@ -25,6 +25,11 @@ define Package/luci-app-koolproxy/description
 	This package contains LuCI configuration pages for koolproxy.
 endef
 
+define Build/Prepare
+	$(foreach po,$(wildcard ${CURDIR}/files/i18n/*.po), \
+		po2lmo $(po) $(PKG_BUILD_DIR)/$(patsubst %.po,%.lmo,$(notdir $(po)));)
+endef
+
 define Build/Compile
 endef
 
@@ -47,10 +52,9 @@ define Package/luci-app-koolproxy/install
 
 	$(INSTALL_BIN) ./files/etc/uci-defaults/luci-koolproxy $(1)/etc/uci-defaults/luci-koolproxy
 	$(INSTALL_DATA) ./files/usr/lib/lua/luci/model/cbi/koolproxy/global.lua $(1)/usr/lib/lua/luci/model/cbi/koolproxy/global.lua
-	$(INSTALL_DATA) ./files/usr/lib/lua/luci/model/cbi/koolproxy/ruleconfig.lua $(1)/usr/lib/lua/luci/model/cbi/koolproxy/ruleconfig.lua
 	$(INSTALL_DATA) ./files/usr/lib/lua/luci/controller/koolproxy.lua $(1)/usr/lib/lua/luci/controller/koolproxy.lua
 	$(INSTALL_DATA) ./files/usr/lib/lua/luci/view/koolproxy/* $(1)/usr/lib/lua/luci/view/koolproxy/
-	$(INSTALL_DATA) ./files/usr/lib/lua/luci/i18n/koolproxy.zh-cn.lmo $(1)/usr/lib/lua/luci/i18n/koolproxy.zh-cn.lmo
+	$(INSTALL_DATA) $(PKG_BUILD_DIR)/koolproxy.zh-cn.lmo $(1)/usr/lib/lua/luci/i18n/koolproxy.zh-cn.lmo
 
 endef
 
