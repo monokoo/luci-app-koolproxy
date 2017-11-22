@@ -105,7 +105,7 @@ Download()
 luci.http.redirect(luci.dispatcher.build_url("admin","services","koolproxy"))
 end
 end
-local i="/etc/dnsmasq.d/adblock.conf"
+local i="/etc/dnsmasq.d/kpadblock.conf"
 e=t:taboption("weblist",TextValue,"configfile")
 e.description=translate("These had been joined websites will use filter,but only blacklist model.Please input the domain names of websites,every line can input only one website domain.For example,google.com.")
 e.rows=28
@@ -115,7 +115,7 @@ return a.readfile(i)or""
 end
 e.write=function(t,t,e)
 a.writefile("/tmp/adblock",e:gsub("\r\n","\n"))
-if(luci.sys.call("cmp -s /tmp/adblock /etc/dnsmasq.d/adblock.conf")==1)then
+if(luci.sys.call("cmp -s /tmp/adblock /etc/dnsmasq.d/kpadblock.conf")==1)then
 a.writefile(i,e:gsub("\r\n","\n"))
 --luci.sys.call("/usr/sbin/adblock >/dev/null")
 end
