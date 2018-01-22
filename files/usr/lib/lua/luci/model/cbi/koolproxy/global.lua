@@ -7,13 +7,13 @@ local d=luci.http
 local s="koolproxy"
 local o,t,e
 local i=luci.sys.exec("/usr/share/koolproxy/koolproxy -v")
-local c=luci.sys.exec("head -3 /usr/share/koolproxy/data/rules/koolproxy.txt |sed -n 3p| awk -F' ' '{print $3,$4}'")
-local r=luci.sys.exec("head -4 /usr/share/koolproxy/data/rules/koolproxy.txt |sed -n 4p| awk -F' ' '{print $3,$4}'")
-local u=luci.sys.exec("grep -v !x /usr/share/koolproxy/data/rules/koolproxy.txt | wc -l")
+local c=luci.sys.exec("head -3 /usr/share/koolproxy/data/rules/koolproxy.txt 2>/dev/null|sed -n 3p| awk -F' ' '{print $3,$4}'")
+local r=luci.sys.exec("head -4 /usr/share/koolproxy/data/rules/koolproxy.txt 2>/dev/null|sed -n 4p| awk -F' ' '{print $3,$4}'")
+local u=luci.sys.exec("grep -v !x /usr/share/koolproxy/data/rules/koolproxy.txt 2>/dev/null| wc -l")
 local l=luci.sys.exec("cat /etc/dnsmasq.d/dnsmasq.adblock | wc -l")
-local h=luci.sys.exec("grep -v '^!' /usr/share/koolproxy/data/rules/user.txt | wc -l")
-local j=luci.sys.exec("grep -v '^!' /usr/share/koolproxy/data/rules/daily.txt | wc -l")
-local k=luci.sys.exec("head -3 /usr/share/koolproxy/data/rules/daily.txt |sed -n 3p| awk -F' ' '{print $3,$4}'")
+local h=luci.sys.exec("grep -v '^!' /usr/share/koolproxy/data/rules/user.txt 2>/dev/null| wc -l")
+local j=luci.sys.exec("grep -v '^!' /usr/share/koolproxy/data/rules/daily.txt 2>/dev/null| wc -l")
+local k=luci.sys.exec("head -3 /usr/share/koolproxy/data/rules/daily.txt 2>/dev/null|sed -n 3p| awk -F' ' '{print $3,$4}'")
 o=Map(s,translate("koolproxy"),translate("A powerful advertisement blocker. <br /><font color=\"red\">Adblock Plus Host list + koolproxy Blacklist mode runs without loss of bandwidth due to performance issues.<br /></font>"))
 o.template="koolproxy/index"
 t=o:section(TypedSection,"global",translate("Running Status"))
