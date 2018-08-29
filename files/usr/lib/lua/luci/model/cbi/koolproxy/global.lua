@@ -15,6 +15,7 @@ local h=luci.sys.exec("grep -v '^!' /usr/share/koolproxy/data/rules/user.txt 2>/
 local j=luci.sys.exec("grep -v '^!' /usr/share/koolproxy/data/rules/daily.txt 2>/dev/null| wc -l")
 local k=luci.sys.exec("head -3 /usr/share/koolproxy/data/rules/daily.txt 2>/dev/null|sed -n 3p| awk -F' ' '{print $3,$4}'")
 o=Map(s,translate("koolproxy"),translate("A powerful advertisement blocker. <br /><font color=\"red\">Adblock Plus Host list + koolproxy Blacklist mode runs without loss of bandwidth due to performance issues.<br /></font>"))
+o.apply_on_parse=true
 o.template="koolproxy/index"
 t=o:section(TypedSection,"global",translate("Running Status"))
 t.anonymous=true
