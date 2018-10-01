@@ -13,6 +13,12 @@ local u=luci.sys.exec("grep -v !x /usr/share/koolproxy/data/rules/koolproxy.txt 
 local l=luci.sys.exec("cat /etc/dnsmasq.d/dnsmasq.adblock | wc -l")
 local h=luci.sys.exec("grep -v '^!' /usr/share/koolproxy/data/rules/user.txt 2>/dev/null| wc -l")
 local j=luci.sys.exec("grep -v '^!' /usr/share/koolproxy/data/rules/daily.txt 2>/dev/null| wc -l")
+local abp=luci.sys.exec("head -4 /usr/share/koolproxy/data/rules/easylistchina.txt 2>/dev/null|sed -n 3p| awk -F' ' '{print $3,$4}'")
+local abpcount=luci.sys.exec("grep -v '^!' /usr/share/koolproxy/data/rules/easylistchina.txt 2>/dev/null| wc -l")
+local cf=luci.sys.exec("head -4 /usr/share/koolproxy/data/rules/chengfeng.txt 2>/dev/null|sed -n 3p| awk -F' ' '{print $3,$4}'")
+local cfcount=luci.sys.exec("grep -v '^!' /usr/share/koolproxy/data/rules/chengfeng.txt 2>/dev/null| wc -l")
+local fboy=luci.sys.exec("head -4 /usr/share/koolproxy/data/rules/fanboy.txt 2>/dev/null|sed -n 4p| awk -F' ' '{print $3,$4}'")
+local fboycount=luci.sys.exec("grep -v '^!' /usr/share/koolproxy/data/rules/fanboy.txt 2>/dev/null| wc -l")
 local k=luci.sys.exec("head -3 /usr/share/koolproxy/data/rules/daily.txt 2>/dev/null|sed -n 3p| awk -F' ' '{print $3,$4}'")
 o=Map(s,translate("koolproxy"),translate("A powerful advertisement blocker. <br /><font color=\"red\">Adblock Plus Host list + koolproxy Blacklist mode runs without loss of bandwidth due to performance issues.<br /></font>"))
 o.apply_on_parse=true
@@ -36,34 +42,39 @@ e=t:taboption("base",Flag,"enabled",translate("Enable"))
 e.default=0
 e.rmempty=false
 e=t:taboption("base",ListValue,"filter_mode",translate('Default')..translate("Filter Mode"))
-e.default="adblock"
+e.default="blacklist"
 e.rmempty=false
+e:value("disable",translate("No Filter"))
 e:value("global",translate("Global Filter"))
-e:value("adblock",translate("AdBlock Filter"))
-e:value("video",translate("Video Filter"))
-e=t:taboption("base",Flag,"adblock",translate("Open adblock"))
+e:value("globalWithHttps",translate("Global Filter With HTTPS"))
+e:value("adblock",translate("Blacklist Filter"))
+e:value("adblockWithHttps",translate("Blacklist Filter With HTTPS"))
+e:value("fullport",translate("Full Port Filter"))
+e=t:taboption("base",Value,"portEx",translate("Exception Port"),translate("全端口模式时可排除指定端口，可输入一个或多个端口（例如“80”或者“80,443”），不含引号。"))
+e.placeholder="留空表示全端口过滤"
+e=t:taboption("base",Flag,"kp_online_rules",translate("Default Rule"))
 e.default=1
-e:depends("filter_mode","adblock")
+e=t:taboption("base",StaticList,"kp_third_rules",translate("ThirdParty Rules"))
+e:value("kp_video_rules",translate("Video Rule"))
+e:value("kp_easylist_rules",translate("ABP Rule"))
+e:value("kp_abx_rules",translate("ChengFeng Rule"))
+e:value("kp_fanboy_rules",translate("Fanboy Rule"))
+e=t:taboption("base",Flag,"third_rule_update",translate("Auto Update  Rules"))
+e.default=1
 e=t:taboption("base",ListValue,"time_update",translate("Timing update rules"))
 for t=0,23 do
 e:value(t,translate("每天"..t.."点"))
 end
 e.default=4
-e:depends("filter_mode","adblock")
-restart=t:taboption("base",Button,"update",translate("Manually update the koolproxy rule"))
+e:depends("third_rule_update",1)
+restart=t:taboption("base",Button,"update",translate("Manually Update Rules"))
 restart.inputtitle=translate("Update manually")
 restart.inputstyle="reload"
-restart:depends("filter_mode","adblock")
 restart.write=function()
 luci.sys.call("/etc/init.d/koolproxy update")
 luci.http.redirect(luci.dispatcher.build_url("admin","services","koolproxy"))
 end
-e=t:taboption("base",ListValue,"default_acl_mode",translate('Default')..translate("ACL Mode"))
-e.default="http"
-e.rmempty=false
-e:value("disable",translate("No Filter"))
-e:value("http",translate("http only"))
-e:value("global",translate("http + https"))
+restart:depends("third_rule_update",1)
 e=t:taboption("base",ListValue,"reboot_mode",translate("KoolProxy AutoRestart"))
 e.default="disable"
 e.rmempty=false
@@ -87,9 +98,11 @@ e:depends("reboot_mode","interval")
 e=t:taboption("about",DummyValue,"status1",translate("</label><div align=\"left\">程序版本<strong>【<font color=\"#660099\">"..i.."</font>】</strong></div>"))
 e=t:taboption("about",DummyValue,"status2",translate("</label><div align=\"left\">静态规则<strong>【<font color=\"#660099\">"..c.."共"..u.."条</font>】</strong></div>"))
 e=t:taboption("about",DummyValue,"status3",translate("</label><div align=\"left\">视频规则<strong>【<font color=\"#660099\">"..r.."</font>】</strong></div>"))
+e=t:taboption("about",DummyValue,"status6",translate("</label><div align=\"left\">ABP规则<strong>【<font color=\"#660099\">"..abp.."共"..abpcount.."条</font>】</strong></div>"))
+e=t:taboption("about",DummyValue,"status6",translate("</label><div align=\"left\">乘风规则<strong>【<font color=\"#660099\">"..cf.."共"..cfcount.."条</font>】</strong></div>"))
+e=t:taboption("about",DummyValue,"status6",translate("</label><div align=\"left\">Fanboy规则<strong>【<font color=\"#660099\">"..fboy.."共"..fboycount.."条</font>】</strong></div>"))
 e=t:taboption("about",DummyValue,"status4",translate("</label><div align=\"left\">每日规则<strong>【<font color=\"#660099\">"..k.."共"..j.."条</font>】</strong></div>"))
 e=t:taboption("about",DummyValue,"status5",translate("</label><div align=\"left\">自定规则<strong>【<font color=\"#660099\">"..h.."</font>】</strong></div>"))
-e=t:taboption("about",DummyValue,"status6",translate("</label><div align=\"left\">Host规则<strong>【<font color=\"#660099\">"..l.."</font>】</strong></div>"))
 e=t:taboption("cert",DummyValue,"c1status",translate("<div align=\"left\">Certificate Restore</div>"))
 e=t:taboption("cert",FileUpload,"")
 e.template="koolproxy/caupload"
@@ -182,8 +195,11 @@ e.width="20%"
 e.default="disable"
 e.rmempty=false
 e:value("disable",translate("No Filter"))
-e:value("http",translate("http only"))
-e:value("global",translate("http + https"))
+e:value("global",translate("Global Filter"))
+e:value("globalWithHttps",translate("Global Filter With HTTPS"))
+e:value("adblock",translate("Blacklist Filter"))
+e:value("adblockWithHttps",translate("Blacklist Filter With HTTPS"))
+e:value("fullport",translate("Full Port Filter"))
 function Download()
 local t,e
 t=nixio.open("/tmp/upload/koolproxyca.tar.gz","r")

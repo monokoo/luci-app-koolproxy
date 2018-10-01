@@ -55,6 +55,9 @@ msgstr "不过滤"
 msgid "Global Filter"
 msgstr "全局模式"
 
+msgid "Global Filter With HTTPS"
+msgstr "带HTTPS的全局模式"
+
 msgid "KoolProxy AutoRestart"
 msgstr "KoolProxy自动重启"
 
@@ -85,11 +88,14 @@ msgstr "<div align=\"left\"><strong>证书恢复</strong></div>"
 msgid "<div align=\"left\">Certificate Backup</div>"
 msgstr "<div align=\"left\"><strong>证书备份</strong></div>"
 
-msgid "AdBlock Filter"
+msgid "Blacklist Filter"
 msgstr "黑名单模式"
 
-msgid "Video Filter"
-msgstr "视频模式"
+msgid "Blacklist Filter With HTTPS"
+msgstr "带HTTPS的黑名单模式"
+
+msgid "Full Port Filter"
+msgstr "全端口模式"
 
 msgid "koolproxy ACLs"
 msgstr "koolproxy 访问控制"
@@ -127,9 +133,29 @@ msgstr "更新日志"
 msgid "Update manually"
 msgstr "手动更新"
 
-msgid "Manually update the koolproxy rule"
-msgstr "手动更新Adblock Host规则"
+msgid "Exception Port"
+msgstr "例外端口"
 
-msgid "Open adblock"
-msgstr "开启Adblock Plus Host"
+msgid "Default Rule"
+msgstr "默认规则订阅"
 
+msgid "ThirdParty Rules"
+msgstr "第三方规则订阅"
+
+msgid "Video Rule"
+msgstr "视频规则"
+
+msgid "ABP Rule"
+msgstr "ABP规则"
+
+msgid "ChengFeng Rule"
+msgstr "乘风规则"
+
+msgid "Fanboy规则"
+msgstr "Fanboy Rule"
+
+msgid "Auto Update Rules"
+msgstr "自动更新规则"
+
+msgid "Manually Update Rules"
+msgstr "手动更新规则"
