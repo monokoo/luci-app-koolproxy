@@ -59,8 +59,8 @@ e:value("kp_video_rules",translate("Video Rule"))
 e:value("kp_easylist_rules",translate("ABP Rule"))
 e:value("kp_abx_rules",translate("ChengFeng Rule"))
 e:value("kp_fanboy_rules",translate("Fanboy Rule"))
-e=t:taboption("base",Flag,"third_rule_update",translate("Auto Update  Rules"))
-e.default=1
+e=t:taboption("base",Flag,"third_rule_update",translate("Auto Update  Rules"),translate("一般情况下程序会自动更新规则文件！"))
+e.default=0
 e=t:taboption("base",ListValue,"time_update",translate("Timing update rules"))
 for t=0,23 do
 e:value(t,translate("每天"..t.."点"))
@@ -74,7 +74,6 @@ restart.write=function()
 luci.sys.call("/etc/init.d/koolproxy update")
 luci.http.redirect(luci.dispatcher.build_url("admin","services","koolproxy"))
 end
-restart:depends("third_rule_update",1)
 e=t:taboption("base",ListValue,"reboot_mode",translate("KoolProxy AutoRestart"))
 e.default="disable"
 e.rmempty=false
