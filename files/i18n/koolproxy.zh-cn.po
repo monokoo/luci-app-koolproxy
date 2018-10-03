@@ -151,8 +151,8 @@ msgstr "ABP规则"
 msgid "ChengFeng Rule"
 msgstr "乘风规则"
 
-msgid "Fanboy规则"
-msgstr "Fanboy Rule"
+msgid "Fanboy Rule"
+msgstr "Fanboy规则"
 
 msgid "Auto Update Rules"
 msgstr "自动更新规则"
