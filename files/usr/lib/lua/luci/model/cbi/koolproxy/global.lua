@@ -54,7 +54,7 @@ e=t:taboption("base",Value,"portEx",translate("Exception Port"),translate("全�
 e.placeholder="留空表示全端口过滤"
 e=t:taboption("base",Flag,"kp_online_rules",translate("Default Rule"))
 e.default=1
-e=t:taboption("base",StaticList,"kp_third_rules",translate("ThirdParty Rules"))
+e=t:taboption("base",MultiValue,"kp_third_rules",translate("ThirdParty Rules"))
 e:value("kp_video_rules",translate("Video Rule"))
 e:value("kp_easylist_rules",translate("ABP Rule"))
 e:value("kp_abx_rules",translate("ChengFeng Rule"))
