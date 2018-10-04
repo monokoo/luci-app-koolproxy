@@ -110,7 +110,7 @@ msgid "Timing update rules"
 msgstr "定时更新规则"
 
 msgid "These had been joined websites will use filter,but only blacklist model.Please input the domain names of websites,every line can input only one website domain.For example,google.com."
-msgstr "加入的网址将过滤广告。只针对黑名单模式。只能输入WEB地址，如：google.com，每个地址一行。"
+msgstr "加入的网址将过滤广告。只针对黑名单模式。只能输入WEB地址，如：google.com，每个地址一行。添加后需手动重启koolproxy"
 
 msgid "Enter your custom rules, each row."
 msgstr "输入你的自定义规则，每条规则一行。"
